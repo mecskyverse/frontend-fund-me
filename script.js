@@ -23,17 +23,16 @@ async function fund(ethAmount) {
     //signer / wallet connection /someone with some gas
     //contract that we are interacting with
     //ABI & private key
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    const signer = provider.getSigner();
 
-    const contract = new ethers.Contract(contractaddress, abi, signer);
-    const transactionResponse = await contract.fund({
-      value: ethers.utils.parseEther(ethAmount),
-    });
-    provider.getBalance(address).then((balance) => {
-      // convert a currency unit from wei to ether
-      const balanceInEth = ethers.utils.formatEther(balance);
-      console.log(`balance: ${balanceInEth} ETH`);
-    });
+    try {
+      const provider = new ethers.providers.Web3Provider(window.ethereum);
+      const signer = provider.getSigner();
+      const contract = new ethers.Contract(contractaddress, abi, signer);
+      const transactionResponse = await contract.fund({
+        value: ethers.utils.parseEther(ethAmount),
+      });
+    } catch (error) {
+      console.log(error);
+    }
   }
 }
