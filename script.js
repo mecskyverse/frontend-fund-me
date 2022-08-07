@@ -46,6 +46,7 @@ function listenForTransactionMine(transactionResponse, provider) {
       console.log(
         `Completed with ${transactionReceipt.confirmations} confirmations`
       );
+      resolve();
     });
   });
 }
