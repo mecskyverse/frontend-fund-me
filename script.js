@@ -2,6 +2,8 @@ import { ethers } from "./ethers-5.6.esm.min.js";
 import { abi, contractaddress } from "./constants.js";
 const connectButton = document.getElementById("connectButton");
 const fundButton = document.getElementById("fundButton");
+const getBalance = document.getElementById("getBalance");
+getBalance.onlick = balance;
 connectButton.onclick = connect;
 fundButton.onclick = fund;
 
@@ -15,8 +17,9 @@ async function connect() {
     connectButton.innerHTML = "Please connect to Metamask";
   }
 }
-async function fund(ethAmount) {
-  ethAmount = "27";
+
+async function fund() {
+  const ethAmount = document.getElementById("ethAmount").value;
   console.log(`funding with ${ethAmount}...`);
   if (typeof window.ethereum !== "undefined") {
     //provider connection to the blockchain
